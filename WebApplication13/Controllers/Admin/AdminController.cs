@@ -12,6 +12,7 @@ namespace WebApplication13.Controllers.Admin
         //private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin
+        //[Authorize(Roles ="Admin")]
         public ActionResult TrangChu()
         {
             return View();

@@ -19,6 +19,9 @@
                                     <th>Tên Khách Hàng</th>
                                     <th>Số Sản Phẩm</th>
                                     <th>Tổng Tiền</th>
+
+                                    <th>Trạng Thái Đơn Hàng</th>
+                                    <th>Loại Đơn Hàng</th>
                                     <th>Ngày Lập</th>
                                     <th></th>
                                 </tr>
@@ -32,12 +35,19 @@
                                         <td>
                                             @item.KhachHang.TenKH
                                         </td>
-                                        <td class="col-sm-2">
+                                        <td>
                                             @String.Format("{0:0,0}", item.SoLuongBan)
                                         </td>
 
                                         <td>
                                             @String.Format("{0:0,0}", item.TongTien)
+                                        </td>
+
+                                        <td>
+                                            @item.TrangThaiDH
+                                        </td>
+                                        <td>
+                                            @item.HinhThucTT
                                         </td>
                                         <td>
                                             @item.NgayMua

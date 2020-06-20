@@ -48,7 +48,23 @@ namespace WebApplication13.Email
 
             return emailMessage;
         }
+        public static string ThongBaoDonHangMoi(string recepientName, string TenKhachHang, string SoLuong,
+          string TongTien, string NgayMua, string Email, string DiaChi)
+        {
+            //Get Template
+            EmailTemplate = ReadPhysicalFile(path + "/ThongBaoDonHangMoi.html");
+            //Fill Content
+            string emailMessage = EmailTemplate
+            .Replace("{recepientName}", recepientName.ToString())
+            .Replace("{TenKhachHang}", TenKhachHang.ToString())
+            .Replace("{SoLuong}", SoLuong.ToString())
+            .Replace("{TongTien}", TongTien.ToString())
+            .Replace("{NgayMua}", NgayMua.ToString())
+            .Replace("{Email}", Email.ToString())
+            .Replace("{DiaChi}", DiaChi.ToString());
 
+            return emailMessage;
+        }
         private static string ReadPhysicalFile(string path)
         {
             try

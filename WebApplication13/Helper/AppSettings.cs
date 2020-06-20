@@ -15,15 +15,13 @@ namespace WebApplication13
 
     public class SmtpConfig
     {
-        public static string SendHost = "";
-        public static int SendPort = 25;
-        public static string ReceiveHost = "";
-        public static int ReceivePort = 993;
+        public static string SendHost = "smtp.gmail.com";
+        public static int SendPort = 587;
         public static string Name = "WebBanHang";
         public static string Username = "WebBanHang";
         public static string EmailAddress = "";
-        //public static string Domain = "RVV8HC";
-        //public static string Password = "@RBVHfcm2019VMS";
+        public static string Account = "truongta9701@gmail.com";
+        public static string Password = "lvyudrjznoxpaomy";
     }
 }
 

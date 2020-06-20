@@ -15,5 +15,6 @@ namespace WebApplication13.Models
         public string DiaChi { get; set; }
         public DateTime NgaySinh { get; set; }
         public string SoDT { get; set; }
+        public string EmailKH { get; set; }
     }
 }

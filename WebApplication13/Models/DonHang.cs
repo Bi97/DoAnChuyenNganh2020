@@ -10,7 +10,7 @@ namespace WebApplication13.Models
         [Required]
         public int SoLuongBan { get; set; }
         public string HinhThucTT { get; set; }
-        public float TongTien { get; set; }
+        public int TongTien { get; set; }
 
         public DateTime NgayMua { get; set; }
 
@@ -21,6 +21,8 @@ namespace WebApplication13.Models
         public CuaHang CuaHang { get; set; }
         [Required]
         public int CuaHangId { get; set; }
+        public string TrangThaiDH { get; set; }
+        public string TokenKey { get; set; }
     }
     public class renderView
     {

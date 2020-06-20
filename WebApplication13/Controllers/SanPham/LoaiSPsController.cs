@@ -49,10 +49,11 @@ namespace WebApplication13.Controllers.Admin
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoaiSPId,TenLoai")] LoaiSP loaiSP)
+        public ActionResult Create([Bind(Include = "LoaiSPId,TenLoai,Xoa")] LoaiSP loaiSP)
         {
             if (ModelState.IsValid)
             {
+                loaiSP.Xoa = false;
                 db.LoaiSPs.Add(loaiSP);
                 db.SaveChanges();
                 return RedirectToAction("Index");

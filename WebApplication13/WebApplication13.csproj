@@ -54,12 +54,30 @@
     <Reference Include="MailKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\packages\MailKit.2.5.2\lib\net46\MailKit.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault, Version=3.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.3.0.5\lib\net461\Microsoft.Azure.KeyVault.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.WebKey, Version=3.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.WebKey.3.0.5\lib\net461\Microsoft.Azure.KeyVault.WebKey.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Services.AppAuthentication, Version=1.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Services.AppAuthentication.1.4.0\lib\net461\Microsoft.Azure.Services.AppAuthentication.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.5.2.0\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.20\lib\net461\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.3.3.18\lib\net452\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
     </Reference>
     <Reference Include="MimeKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.2.5.2\lib\net46\MimeKit.dll</HintPath>
@@ -70,11 +88,29 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -84,6 +120,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -96,8 +133,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
@@ -233,9 +268,23 @@
     <Compile Include="Helper\Email\EmailTemplates.cs" />
     <Compile Include="Helper\EnumExtensions.cs" />
     <Compile Include="Helper\Enumstatus.cs" />
-    <Compile Include="Migrations\202004031346015_0304.cs" />
-    <Compile Include="Migrations\202004031346015_0304.Designer.cs">
-      <DependentUpon>202004031346015_0304.cs</DependentUpon>
+    <Compile Include="Helper\KeyVault.cs" />
+    <Compile Include="Helper\ServiceSMS.cs" />
+    <Compile Include="Migrations\202004250832251_addcolumn.cs" />
+    <Compile Include="Migrations\202004250832251_addcolumn.Designer.cs">
+      <DependentUpon>202004250832251_addcolumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004251258241_addcolumn2.cs" />
+    <Compile Include="Migrations\202004251258241_addcolumn2.Designer.cs">
+      <DependentUpon>202004251258241_addcolumn2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004251523372_addcolumn3.cs" />
+    <Compile Include="Migrations\202004251523372_addcolumn3.Designer.cs">
+      <DependentUpon>202004251523372_addcolumn3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004260536024_zxcz.cs" />
+    <Compile Include="Migrations\202004260536024_zxcz.Designer.cs">
+      <DependentUpon>202004260536024_zxcz.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1151,7 +1200,9 @@
     <Content Include="Content\client\font-awesome.css" />
     <Content Include="Content\client\gtm.js" />
     <Content Include="Content\client\gucci.jpg" />
+    <Content Include="Content\client\Img\apple.jpg" />
     <Content Include="Content\client\Img\DienThoai1.png" />
+    <Content Include="Content\client\Img\homepage.jpg" />
     <Content Include="Content\client\Img\laptop1.png" />
     <Content Include="Content\client\Img\Tablet1.png" />
     <Content Include="Content\client\inferredEvents.js" />
@@ -1241,6 +1292,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Helper\Email\img\footer.png" />
+    <Content Include="Helper\Email\img\header.png" />
+    <Content Include="Helper\Email\Templates\confirmdathang.html" />
+    <Content Include="Helper\Email\Templates\ThongBaoDonHangMoi.html" />
     <Content Include="img\angular.png" />
     <Content Include="img\apple-icon.png" />
     <Content Include="img\avt_empty.jpeg" />
@@ -1344,6 +1399,109 @@
     <Content Include="img\sprite.png" />
     <Content Include="img\table.png" />
     <Content Include="img\vue.png" />
+    <Content Include="Views\img\angular.png" />
+    <Content Include="Views\img\apple-icon.png" />
+    <Content Include="Views\img\avt_empty.jpeg" />
+    <Content Include="Views\img\breadcrumb.png" />
+    <Content Include="Views\img\cover.jpg" />
+    <Content Include="Views\img\demo\av1.jpg" />
+    <Content Include="Views\img\demo\av2.jpg" />
+    <Content Include="Views\img\demo\av3.jpg" />
+    <Content Include="Views\img\demo\av4.jpg" />
+    <Content Include="Views\img\demo\av5.jpg" />
+    <Content Include="Views\img\demo\demo-image1.jpg" />
+    <Content Include="Views\img\demo\demo-image2.jpg" />
+    <Content Include="Views\img\demo\demo-image3.jpg" />
+    <Content Include="Views\img\demo\envelope.png" />
+    <Content Include="Views\img\ex1.png" />
+    <Content Include="Views\img\ex2.png" />
+    <Content Include="Views\img\ex3.png" />
+    <Content Include="Views\img\faces\avatar.jpg" />
+    <Content Include="Views\img\faces\card-profile1-square.jpg" />
+    <Content Include="Views\img\faces\card-profile2-square.jpg" />
+    <Content Include="Views\img\faces\marc.jpg" />
+    <Content Include="Views\img\favicon.png" />
+    <Content Include="Views\img\gallery\imgbox1.jpg" />
+    <Content Include="Views\img\gallery\imgbox2.jpg" />
+    <Content Include="Views\img\gallery\imgbox3.jpg" />
+    <Content Include="Views\img\gallery\imgbox4.jpg" />
+    <Content Include="Views\img\gallery\imgbox5.jpg" />
+    <Content Include="Views\img\glyphicons-halflings-white.png" />
+    <Content Include="Views\img\gritter.png" />
+    <Content Include="Views\img\HinhSanPham\1.PNG" />
+    <Content Include="Views\img\HinhSanPham\2.PNG" />
+    <Content Include="Views\img\HinhSanPham\apple watch.PNG" />
+    <Content Include="Views\img\HinhSanPham\java.PNG" />
+    <Content Include="Views\img\html.png" />
+    <Content Include="Views\img\hue.png" />
+    <Content Include="Views\img\icons\16\book.png" />
+    <Content Include="Views\img\icons\16\cabinet.png" />
+    <Content Include="Views\img\icons\16\calendar.png" />
+    <Content Include="Views\img\icons\16\client.png" />
+    <Content Include="Views\img\icons\16\database.png" />
+    <Content Include="Views\img\icons\16\download.png" />
+    <Content Include="Views\img\icons\16\graph.png" />
+    <Content Include="Views\img\icons\16\home.png" />
+    <Content Include="Views\img\icons\16\lock.png" />
+    <Content Include="Views\img\icons\16\mail.png" />
+    <Content Include="Views\img\icons\16\pdf.png" />
+    <Content Include="Views\img\icons\16\people.png" />
+    <Content Include="Views\img\icons\16\piechart.png" />
+    <Content Include="Views\img\icons\16\search.png" />
+    <Content Include="Views\img\icons\16\shopping-bag.png" />
+    <Content Include="Views\img\icons\16\survey.png" />
+    <Content Include="Views\img\icons\16\tag.png" />
+    <Content Include="Views\img\icons\16\user.png" />
+    <Content Include="Views\img\icons\16\wallet.png" />
+    <Content Include="Views\img\icons\16\web.png" />
+    <Content Include="Views\img\icons\32\book.png" />
+    <Content Include="Views\img\icons\32\cabinet.png" />
+    <Content Include="Views\img\icons\32\calendar.png" />
+    <Content Include="Views\img\icons\32\client.png" />
+    <Content Include="Views\img\icons\32\dashboard.png" />
+    <Content Include="Views\img\icons\32\database.png" />
+    <Content Include="Views\img\icons\32\download.png" />
+    <Content Include="Views\img\icons\32\graph.png" />
+    <Content Include="Views\img\icons\32\home.png" />
+    <Content Include="Views\img\icons\32\lock.png" />
+    <Content Include="Views\img\icons\32\mail.png" />
+    <Content Include="Views\img\icons\32\pdf.png" />
+    <Content Include="Views\img\icons\32\people.png" />
+    <Content Include="Views\img\icons\32\piechart.png" />
+    <Content Include="Views\img\icons\32\search.png" />
+    <Content Include="Views\img\icons\32\shopping-bag.png" />
+    <Content Include="Views\img\icons\32\survey.png" />
+    <Content Include="Views\img\icons\32\tag.png" />
+    <Content Include="Views\img\icons\32\user.png" />
+    <Content Include="Views\img\icons\32\wallet.png" />
+    <Content Include="Views\img\icons\32\web.png" />
+    <Content Include="Views\img\imac1.png" />
+    <Content Include="Views\img\ipad.png" />
+    <Content Include="Views\img\iPad2.png" />
+    <Content Include="Views\img\iphonex.png" />
+    <Content Include="Views\img\larrow.png" />
+    <Content Include="Views\img\line.png" />
+    <Content Include="Views\img\login-register.jpg" />
+    <Content Include="Views\img\login_1.jpg" />
+    <Content Include="Views\img\logo.png" />
+    <Content Include="Views\img\logologin.jpg" />
+    <Content Include="Views\img\Macbook.png" />
+    <Content Include="Views\img\mask.png" />
+    <Content Include="Views\img\menu-active.png" />
+    <Content Include="Views\img\new_logo.png" />
+    <Content Include="Views\img\notification.png" />
+    <Content Include="Views\img\rarrow.png" />
+    <Content Include="Views\img\react.png" />
+    <Content Include="Views\img\saturation.png" />
+    <Content Include="Views\img\select2.png" />
+    <Content Include="Views\img\sidebar-1.jpg" />
+    <Content Include="Views\img\sidebar-2.jpg" />
+    <Content Include="Views\img\sidebar-3.jpg" />
+    <Content Include="Views\img\sidebar-4.jpg" />
+    <Content Include="Views\img\spinner.gif" />
+    <Content Include="Views\img\sprite.png" />
+    <Content Include="Views\img\table.png" />
+    <Content Include="Views\img\vue.png" />
     <Content Include="Scripts\Admin\bootstrap-colorpicker.js" />
     <Content Include="Scripts\Admin\bootstrap-datepicker.js" />
     <Content Include="Scripts\Admin\bootstrap-wysihtml5.js" />
@@ -1564,9 +1722,9 @@
     <Content Include="Admin\dist\css\icons\weather-icons\sass\weather-icons.min.scss" />
     <Content Include="Admin\dist\css\icons\weather-icons\sass\weather-icons.scss" />
     <Content Include="Content\material-dashboard.css.map" />
-    <Content Include="img\demo\Thumbs.db" />
-    <Content Include="img\icons\32\Thumbs.db" />
-    <Content Include="img\Thumbs.db" />
+    <Content Include="Views\img\demo\Thumbs.db" />
+    <Content Include="Views\img\icons\32\Thumbs.db" />
+    <Content Include="Views\img\Thumbs.db" />
     <Content Include="Content\AdminNew_files\js" />
     <Content Include="Content\client\AuthenticationService.Authenticate" />
     <Content Include="Content\client\js" />
@@ -1577,14 +1735,25 @@
     <Content Include="Areas\Client\Views\Client_GioHang\DatHang.cshtml" />
     <Content Include="Areas\Client\Views\Client_GioHang\GioHangPartial.cshtml" />
     <Content Include="Areas\Client\Views\Client_GioHang\Result.cshtml" />
-    <Content Include="Areas\Client\Views\Client_Partial\Check_Con_Hang.cshtml" />
     <Content Include="Areas\Client\Views\Client_Partial\Nav_NhaCungCap.cshtml" />
-    <Content Include="Areas\Client\Views\Client_Partial\Footer_CuaHangAddress.cshtml" />
-    <None Include="Areas\Client\Views\Client_Partial\TopOffer_partital.cshtml" />
+    <Content Include="Areas\Client\Views\Client_Partial\Partial_Footer_CuaHangAddres.cshtml" />
+    <Content Include="Areas\Client\Views\Client_Partial\TopOffer_Partial.cshtml" />
     <Content Include="Areas\Client\Views\Client_SanPham\CTSanPham.cshtml" />
     <Content Include="Areas\Client\Views\Client_SanPham\Index.cshtml" />
     <Content Include="Areas\Client\Views\Client_SanPham\SPByNhaCungCap.cshtml" />
+    <Content Include="Areas\Client\Views\Client_Partial\Partial_Footer_CuaHangAddress.cshtml" />
+    <Content Include="Areas\Client\Views\Client_Partial\Check_Con_Hang_Partial.cshtml" />
+    <Content Include="img\demo\Thumbs.db" />
+    <Content Include="img\icons\32\Thumbs.db" />
+    <Content Include="img\Thumbs.db" />
+    <Content Include="Areas\Client\Views\Client_GioHang\ConfirmSMS.cshtml" />
+    <Content Include="Areas\Client\Views\Client_GioHang\VerifySMS.cshtml" />
+    <Content Include="Areas\Client\Views\Client_GioHang\VerifyMail.cshtml" />
     <None Include="Properties\PublishProfiles\TruongProduction - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Truongproduction1705 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\truongproduction2 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\WebApplication1320200410152619 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\WebApplication1320200410163804 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\core\bootstrap-material-design.min.js" />
     <Content Include="Scripts\core\jquery.min.js" />
@@ -1738,8 +1907,17 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004031346015_0304.resx">
-      <DependentUpon>202004031346015_0304.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004250832251_addcolumn.resx">
+      <DependentUpon>202004250832251_addcolumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251258241_addcolumn2.resx">
+      <DependentUpon>202004251258241_addcolumn2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251523372_addcolumn3.resx">
+      <DependentUpon>202004251523372_addcolumn3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004260536024_zxcz.resx">
+      <DependentUpon>202004260536024_zxcz.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

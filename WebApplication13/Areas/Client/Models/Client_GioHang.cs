@@ -12,16 +12,13 @@ namespace WebApplication13.Areas.Client.Models
         public int cSanPhamId { get; set; }
         public string cTenSP { get; set; }
         public int cSoLuong { get; set; }
-        public float cDonGia { get; set; }
-        public float cGiamGia { get; set; }
+        public int cDonGia { get; set; }
+        public int cGiamGia { get; set; }
         public int MaNV { get; set; }
         public string cMaSanPham { get; set; }
         public string cURL_Image1 { get; set; }
-        public float cThanhTien
-        {
-            get { return cSoLuong * (cDonGia - cGiamGia); }
-        }
-
+        public int cThanhTien { get; set; }
+      
         public Client_GioHang(int SanPhamId)
         {
             MaNV = 0;
@@ -29,9 +26,11 @@ namespace WebApplication13.Areas.Client.Models
             SanPham SP = db.SanPhams.Single(n => n.SanPhamId == cSanPhamId);
             cTenSP = SP.TenSP;
             cSoLuong = 1;
-            cDonGia = float.Parse(SP.DonGia.ToString());
+            cDonGia = SP.DonGia;
             cURL_Image1 = SP.Url_img1;
             cMaSanPham = SP.MaSanPham;
+            cThanhTien = cSoLuong * (cDonGia - cGiamGia);
+         
         }
     }
 }

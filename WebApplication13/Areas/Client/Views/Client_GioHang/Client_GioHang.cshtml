@@ -15,7 +15,7 @@
                     <br>
                     <div class="material-datatables">
                         <div class="table-responsive">
-                            <table id="zero_config1" class="table table-striped row-border">
+                            <table id="zero_config1" class="table table-striped row-border" cellpadding="5" cellspacing="0">
                                 <thead style="font-size:25px; height:30px" class="text-center">
                                     <tr>
                                         <th></th>
@@ -50,7 +50,7 @@
                                             </td>
                                             @using (Html.BeginForm("", "", new { @csanphamid = item.cSanPhamId }))
                                             {
-                                                <td class="col-sm-1">
+                                                <td>
                                                     <input class="form-control" type="number" min="1" name="txtSoLuong" value="@item.cSoLuong" style="text-align:center; width:50px ; margin-left:20px" />
                                                 </td>
                                                 <td>
@@ -82,11 +82,13 @@
                     <hr />
                     <div>
                         <h3 class="card-title">Chọn hình thức thanh toán</h3>
-                        <span class="btn btn-info" id="to-frm1"> Giao hàng COD </span>
+                        <span class="btn btn-info" id="to-frm1"> Nhận Tại Cửa Hàng </span>
                         <span class="btn btn-info" id="to-frm2"> Thanh Toán Trực Tuyến </span>
-                        <span class="btn btn-info" id="to-frm3"> Nhận Tại Cửa Hàng </span>
+                        <span class="btn btn-info" id="to-frm3"> Giao Hàng Tận Nhà  </span>
                     </div>
                     <hr />
+                    <input id="TenForm" name="TenForm" style="visibility:hidden" class="form-control" />
+
                     <div id="frm1" style="display:none">
                         <h3 class="card-title">Xác Nhận Thông Tin</h3>
                         <div style="margin-left:25%; margin-right:25%">
@@ -123,13 +125,6 @@
                             </div>
 
                         </div>
-                        <hr />
-                        <div class="row float-right">
-                            <div>
-                                <a class="btn btn-info btn-lg pull-right" href="@Url.Action("DS", "BanHang2")">Trở Lại</a>
-                                <input type="submit" value="Xác Nhận" class="btn btn-outline-primary btn-lg pull-right ml-3 mr-5" />
-                            </div>
-                        </div>
                     </div>
 
                     <div id="frm2" style="display:none">
@@ -139,7 +134,7 @@
                     {
                         <div id="frm3" style="display:none">
                             <h3 class="card-title">Xác Nhận Thông Tin</h3>
-                            <div class="row">
+                            <div class="row" style="font-weight:bold; color:black">
                                 <div class="col-md-7">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -174,7 +169,20 @@
                                         </div>
 
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mt-3">
+                                            <div class="form-group">
+                                                <label class="label">Chọn Cửa Hàng: </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                @Html.DropDownList("MaKhoHang", null, htmlAttributes: new { @class = "form-control", @style = "text-align:center; font-size:17px" })
+                                            </div>
 
+                                        </div>
+                                        <!--/span-->
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
 
@@ -183,16 +191,30 @@
                                 </div>
                             </div>
 
-                            <hr />
-                            <div class="row float-right">
-                                <div>
-                                    <a class="btn btn-info btn-lg pull-right" href="@Url.Action("DS", "BanHang2")">Trở Lại</a>
-                                    <input type="submit" value="Xác Nhận" class="btn btn-outline-primary btn-lg pull-right ml-3 mr-5" />
-                                </div>
-                            </div>
                         </div>
                     }
+                    <div id="frm4" style="display:none">
+                        <div class="row" style="font-weight:bold;color:black">
+                            <div class="col-md-3" style="max-width:20%">
+                                <label class="label">Chọn Phương Thức Xác Thực: </label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="radio" id="Rad" name="Rad" value="RadSDT">
+                                <label class="label" style="font-size:15px">Số Điện Thoại</label><br>
+                                <input type="radio" id="Rad" name="Rad" value="RadMail">
+                                <label class="label" style="font-size:15px">Email</label><br>
+                                
+                            </div>
+                        </div>
 
+                        <hr />
+                        <div class="row float-right">
+                            <div>
+                                <a class="btn btn-info btn-lg pull-right" href="@Url.Action("DS", "BanHang2")">Trở Lại</a>
+                                <input type="submit" value="Xác Nhận" class="btn btn-outline-primary btn-lg pull-right ml-3 mr-5" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,6 +224,12 @@
 <style>
     input[type='number'] {
         -moz-appearance: textfield;
+    }
+    .card-title{
+        font-size:25px;
+    }
+    .label{
+        color:black;
     }
 </style>
 <script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
@@ -223,16 +251,25 @@
             $("#frm1").slideToggle(50);
             $("#frm2").slideUp(50);
             $("#frm3").slideUp(50);
+            $("#frm4").slideUp(50);
+            $("#frm4").slideToggle(50);
+            $("#TenForm").val('form1');
         });
         $("#to-frm2").click(function () {
             $("#frm1").slideUp(50);
             $("#frm2").slideToggle(50);
             $("#frm3").slideUp(50);
+            $("#TenForm").val('form2');
+            $("#frm4").slideUp(50);
         });
         $("#to-frm3").click(function () {
             $("#frm1").slideUp(50);
             $("#frm2").slideUp(50);
             $("#frm3").slideToggle(50);
+            $("#TenKH").val('');
+            $("#TenForm").val('form3');
+            $("#frm4").slideUp(50);
+            $("#frm4").slideToggle(50);
         });
     })
 </script>

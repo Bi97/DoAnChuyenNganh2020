@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 using WebApplication13.Areas.Client.Models;
 using WebApplication13.Email;
+using WebApplication13.Helper;
 using WebApplication13.Models;
-
 namespace WebApplication13.Areas.Client.Controllers
 {
     public class Client_GioHangController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        public ApplicationDbContext db = new ApplicationDbContext();
 
         #region "Gio hang"
         // GET: Client/Client_GioHang
@@ -69,9 +75,9 @@ namespace WebApplication13.Areas.Client.Controllers
             }
             return gChietKhau;
         }
-        private float TongTien()
+        private int TongTien()
         {
-            float gTongTien = 0;
+            int gTongTien = 0;
             List<Client_GioHang> listClient_GioHang = Session["Client_GioHang"] as List<Client_GioHang>;
             if (listClient_GioHang != null)
             {
@@ -121,7 +127,7 @@ namespace WebApplication13.Areas.Client.Controllers
                 foreach (var item in listClient_GioHang)
                 {
                     ViewBag.CheckMaSP = item.cMaSanPham;
-                    //ViewBag.MaKhoHang = new SelectList(db.SanPhams.Where(n => n.MaSanPham == item.cMaSanPham).Include(n => n.KhoHang), "KhoHang", "TenKho");
+                    ViewBag.MaKhoHang = new SelectList(db.SanPhams.Where(n => n.MaSanPham == item.cMaSanPham).Include(n => n.KhoHang).Select(n => n.KhoHang.TenKho), "TenKho");
                 }
             }
             ViewBag.TongSoLuong = TongSoLuong();
@@ -131,15 +137,35 @@ namespace WebApplication13.Areas.Client.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Client_GioHang(FormCollection collection)
+        public ActionResult Client_GioHang(FormCollection collection, string RadSDT)
         {
+            string tenKho = collection["MaKhoHang"];
+            var KhoHangId = db.KhoHangs.SingleOrDefault(n => n.TenKho == tenKho).KhoHangId;
             DonHang DH = new DonHang();
             List<Client_GioHang> gh = LayClient_GioHang();
             DH.KhachHangId = 1;
-            DH.CuaHangId = 4;
+            DH.CuaHangId = KhoHangId;
             DH.NgayMua = DateTime.Now;
             DH.SoLuongBan = TongSoLuong();
+            int tongtien = TongTien();
             DH.TongTien = TongTien();
+            DH.TokenKey = "851102";
+            DH.TrangThaiDH = EnumExtensions.GetDescription(Enumstatus.NotConfirm);
+            string tenform = collection["TenForm"];
+
+            switch (tenform)
+            {
+                case "form1":
+                    DH.HinhThucTT = EnumExtensions.GetDescription(Enumstatus.SHIP_COD);
+                    break;
+                case "form2":
+                    DH.HinhThucTT = EnumExtensions.GetDescription(Enumstatus.TT_Online);
+                    break;
+                case "form3":
+                    DH.HinhThucTT = EnumExtensions.GetDescription(Enumstatus.Pick_Up);
+                    break;
+            }
+
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongTien = TongTien();
             db.DonHangs.Add(DH);
@@ -155,34 +181,98 @@ namespace WebApplication13.Areas.Client.Controllers
                 db.CTDonHangs.Add(CTDH);
             }
             db.SaveChanges();
-            SendMail();
             Session["Client_GioHang"] = null;
-            return RedirectToAction("Result");
+            if (collection["rad"] == "RadSDT")
+            {
+                string ToNumber = "+84" + collection["Sdt"].Substring(2);
+                ServiceSMS sms = new ServiceSMS();
+                sms.SendSMS(ToNumber, DH.TokenKey);
+                return RedirectToAction("VerifySMS");
+            }
+            if (collection["rad"] == "RadMail")
+            {
+                SendMail();
+                return RedirectToAction("VerifyMail");
 
+            }
+            return View();
             void SendMail()
             {
-                var tenKH = collection["TenKH"];
-                var Sdt = collection["Sdt"];
-                var Diachi = collection["Diachi"];
-                var Email = collection["Email"];
+                var tenKH = collection["TenKH"].Substring(1);
+                var Sdt = collection["Sdt"].Substring(1);
+                var Diachi = collection["Diachi"].Substring(1);
+                var Email = collection["Email"].Substring(1);
                 DateTime NgayGiaoDuKien = DH.NgayMua.AddDays(3);
-                string callback = "";
+                var callbackUrl = "http://Localhost:54655" + Url.Action("ConfirmDH", "Client_GioHang", new { @TokenKey = DH.TokenKey });
                 EmailSender email = new EmailSender();
-                email.ConfirmDatHangAsync(tenKH, "Truong.TaQuang@vn.bosch.com", tenKH, DH.SoLuongBan.ToString(), DH.TongTien.ToString(), DH.NgayMua.ToShortDateString(), Email, Diachi, NgayGiaoDuKien.ToShortDateString(), callback);
+                email.ConfirmDatHangAsync(tenKH, Email, tenKH, DH.SoLuongBan.ToString(), string.Format("{0:0,0}", DH.TongTien), DH.NgayMua.ToShortDateString(), Email, Diachi, NgayGiaoDuKien.ToShortDateString(), callbackUrl);
             }
+        }
+
+        public ActionResult VerifySMS()
+        {
+            return View();
+        }
+        public ActionResult VerifyMail()
+        {
+            return View();
+        }
+        public ActionResult ConfirmSMS(FormCollection collection)
+        {
+            string token = collection["Token"];
+
+            return RedirectToAction("ConfirmDH", new { @TokenKey = token });
         }
         public ActionResult result()
         {
             return View();
         }
+        public ActionResult ConfirmDH(string TokenKey)
+        {
+            if (db.DonHangs.Where(n => n.TokenKey == TokenKey).Count() == 1)
+            {               
+                EmailSender email = new EmailSender();
+                var DonHang = db.DonHangs.SingleOrDefault(n => n.TokenKey == TokenKey);                
+                DonHang.TokenKey = "";
+                DonHang.TrangThaiDH = EnumExtensions.GetDescription(Enumstatus.Confirmed);
+                email.ThongBaoDonHangMoiAsync("Cửa Hàng","truongta9701@gmail.com","Truong",DonHang.SoLuongBan.ToString(),DonHang.TongTien.ToString(),DonHang.NgayMua.ToString(),"Truongta9701@gmail.com","BinhTan");
 
+                db.SaveChanges();
+                return RedirectToAction("Result");
+            }
+            else
+            {
+                return View();
+            }
 
-
-
+        }
         public ActionResult GioHangPartial()
         {
             ViewBag.TongSoLuong = TongSoLuong();
             return PartialView();
+        }
+
+        public static string RandomNumber(int numberRD)
+        {
+            string randomStr = "";
+            try
+            {
+
+                int[] myIntArray = new int[numberRD];
+                int x;
+                //that is to create the random # and add it to uour string
+                Random autoRand = new Random();
+                for (x = 0; x < numberRD; x++)
+                {
+                    myIntArray[x] = System.Convert.ToInt32(autoRand.Next(0, 9));
+                    randomStr += (myIntArray[x].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                randomStr = "error";
+            }
+            return randomStr;
         }
         #endregion
 

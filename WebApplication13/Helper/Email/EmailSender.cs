@@ -26,6 +26,8 @@ namespace WebApplication13.Email
         Task<bool> PCKAsync(string recepientName, string recepientEmail, string ccEmail = null);
         Task<bool> ConfirmDatHangAsync(string recepientName, string recepientEmail, string TenKhachHang, string SoLuong,
             string TongTien, string NgayMua, string Email, string DiaChi, string NgayGiaoDuKien, string CallBackUrl, string ccEmail = null);
+        Task<bool> ThongBaoDonHangMoiAsync(string recepientName, string recepientEmail, string TenKhachHang, string SoLuong,
+            string TongTien, string NgayMua, string Email, string DiaChi, string ccEmail = null);
     }
     public class EmailSender : SmtpConfig, IEmailSender
     {
@@ -125,6 +127,7 @@ namespace WebApplication13.Email
                 {
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                     client.Connect(SendHost, SendPort, false);
+                    client.Authenticate(Account, Password);
                     client.Send(message);
                     client.Disconnect(true);
                 }
@@ -166,7 +169,36 @@ namespace WebApplication13.Email
                 return false;
             }
         }
+        //public async Task<bool> ThongBaoDonHangMoiAsync(string recepientName, string recepientEmail, string TenKhachHang, string SoLuong,
+        //   string TongTien, string NgayMua, string Email, string DiaChi, string ccEmail = null)
+        //{
+        //    this.hasAttachment = false;
+        //    string message = EmailTemplates.ThongBaoDonHangMoi(recepientName, TenKhachHang, SoLuong, TongTien, NgayMua, Email, DiaChi);
+        //    (bool success, string errorMsg) = await this.SendEmailAsync(recepientName, recepientEmail, ccEmail, "Thông Báo Đơn Hàng Mới", message);
+        //    if (success)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
+        public async Task<bool> ThongBaoDonHangMoiAsync(string recepientName, string recepientEmail, string TenKhachHang, string SoLuong, string TongTien, string NgayMua, string Email, string DiaChi, string ccEmail = null)
+        {
+            this.hasAttachment = false;
+            string message = EmailTemplates.ThongBaoDonHangMoi(recepientName, TenKhachHang, SoLuong, TongTien, NgayMua, Email, DiaChi);
+            (bool success, string errorMsg) = await this.SendEmailAsync(recepientName, recepientEmail, ccEmail, "Thông Báo Đơn Hàng Mới", message);
+            if (success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 

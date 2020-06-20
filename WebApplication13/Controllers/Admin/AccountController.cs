@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -77,7 +79,7 @@ namespace WebApplication13.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.CuaHangId = new SelectList(db.cuaHangs, "CuaHangId", "TenCuaHang", model.CuaHangId);
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, CuaHangId = model.CuaHangId };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, CuaHangId = model.CuaHangId, IsAccount = true };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -89,8 +91,8 @@ namespace WebApplication13.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { UserId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Xác thực tài khoản của bạn", "Vui lòng click vào <a href=\"" + callbackUrl + "\">đây</a> để thực hiện xác thực");
                     ////return RedirectToAction("Index", "Home");
-                    //// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    //// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, Protocol: Request.Url.Scheme);
+                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, Protocol: Request.Url.Scheme);
                     //// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     //ViewBag.Message = "Chúng tôi đã gửi email cho xác thực tài khoản đến email của bạn. Kiểm tra email của bạn để xác thực.";
                     ViewBag.Message = "Thêm Tài khoản Thành Công";
@@ -131,7 +133,7 @@ namespace WebApplication13.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.CuaHangId = new SelectList(db.cuaHangs, "CuaHangId", "TenCuaHang", model.CuaHangId);
-                var user = new ApplicationUser { IsAccount = true, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, CuaHangId = model.CuaHangId, FullName = model.FirstName + " " + model.LastName, UserName = model.FirstName + " " + model.LastName, SoDT = model.SoDT, DiaChi = model.DiaChi };
+                var user = new ApplicationUser { IsAccount = false, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, CuaHangId = model.CuaHangId, FullName = model.FirstName + " " + model.LastName, UserName = model.FirstName + " " + model.LastName, SoDT = model.SoDT, DiaChi = model.DiaChi };
                 if (model.Password == null)
                 {
                     model.Password = "Aa12345678@";
@@ -157,20 +159,19 @@ namespace WebApplication13.Controllers
         }
         #endregion
 
-
-
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+          
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            ApplicationUser dbuser = new ApplicationUser();
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -182,20 +183,36 @@ namespace WebApplication13.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    Session["DN"] = dbuser;
                     if (returnUrl != null)
                     {
+                        if(User.Identity.IsAuthenticated)
+                        {
+                          
+                        }    
+                        returnUrl = null;
                         return RedirectToLocal(returnUrl);
                     }
-                    if (User.TenCuaHang() == "0")
+               
+                    if (AuthenticationManager.User.Role_Count() == "0")
+                    {
+                        ModelState.AddModelError("", "Tài khoản chưa được cấp quyền");
+                        Session.Abandon();
+                        if (AuthenticationManager.User.Identity.IsAuthenticated)
+                            AuthenticationManager.SignOut();
+                        Session.Abandon();
+
+                        return View(model);
+                    }
+
+                    if (AuthenticationManager.User.TenCuaHang() == "0")
                     {
                         return RedirectToLocal(Url.Action("TrangChu", "Admin"));
                     }
                     else
                     {
                         return RedirectToLocal(Url.Action("Index", "User"));
-
                     }
+                   
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

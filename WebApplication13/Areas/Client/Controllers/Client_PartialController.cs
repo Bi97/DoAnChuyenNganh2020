@@ -45,6 +45,8 @@ namespace WebApplication13.Areas.Client.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             {
                 var Get = db.SanPhams.Where(n => n.MaSanPham == MaSP).Include(n => n.KhoHang).ToList();
+
+                ViewBag.SoCuaHang = Get.Count() + 1;
                 return PartialView(Get);
             }
         }

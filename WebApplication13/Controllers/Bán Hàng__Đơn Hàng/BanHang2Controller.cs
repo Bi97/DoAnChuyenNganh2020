@@ -79,9 +79,9 @@ namespace WebApplication13.Controllers.User
             return gChietKhau;
         }
 
-        private float TongTien()
+        private int TongTien()
         {
-            float gTongTien = 0;
+            int gTongTien = 0;
             List<GioHang> listGioHang = Session["GioHang"] as List<GioHang>;
             if (listGioHang != null)
             {
@@ -159,7 +159,7 @@ namespace WebApplication13.Controllers.User
             GioHang sanpham = listGioHang.SingleOrDefault(n => n.gSanPhamId == gSanPhamId);
             if (sanpham != null)
             {
-                sanpham.gGiamGia = float.Parse(f["txtGiamGia"]);
+                sanpham.gGiamGia = int.Parse(f["txtGiamGia"]);
                 sanpham.gSoLuong = int.Parse(f["txtSoLuong"].ToString());
 
             }

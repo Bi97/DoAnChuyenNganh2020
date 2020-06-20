@@ -35,6 +35,7 @@ namespace WebApplication13.Models
             userIdentity.AddClaim(new Claim("LastName", this.LastName));
             userIdentity.AddClaim(new Claim("FirstName", this.FirstName));
             userIdentity.AddClaim(new Claim("TenCuaHang", this.CuaHangId.ToString()));
+            userIdentity.AddClaim(new Claim("Roles", this.Roles.Count.ToString()));
             return userIdentity;
 
         }
@@ -79,6 +80,21 @@ namespace WebApplication13.Models
                 foreach (var claim in claimsIdentity.Claims)
                 {
                     if (claim.Type == "TenCuaHang")
+                        return claim.Value;
+                }
+                return "";
+            }
+            else
+                return "";
+        }
+        public static string Role_Count(this IPrincipal user)
+        {
+            if (user.Identity.IsAuthenticated)
+            {
+                ClaimsIdentity claimsIdentity = user.Identity as ClaimsIdentity;
+                foreach (var claim in claimsIdentity.Claims)
+                {
+                    if (claim.Type == "Roles")
                         return claim.Value;
                 }
                 return "";
