@@ -150,7 +150,7 @@ namespace WebApplication13.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SanPhamId,MaSanPham,TenSP,SoLuong,MoTa,DonGia,NhaCungCapId,LoaiSPId,NgayTao,KhoHangId")] SanPham sanPham)
+        public ActionResult Edit([Bind(Include = "SanPhamId,MaSanPham,TenSP,SoLuong,tempSoLuong,MoTa,DonGia,NhaCungCapId,LoaiSPId,TopOffer,Ghim,Image2,Url_img2,Image1,Url_img1,NgayTao,Xoa,KhoHangId,Show")] SanPham sanPham)
         {
             if (ModelState.IsValid)
             {

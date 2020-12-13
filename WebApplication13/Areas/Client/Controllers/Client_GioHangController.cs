@@ -149,7 +149,7 @@ namespace WebApplication13.Areas.Client.Controllers
             DH.SoLuongBan = TongSoLuong();
             int tongtien = TongTien();
             DH.TongTien = TongTien();
-            DH.TokenKey = "851102";
+            DH.TokenKey = RandomNumber(6);
             DH.TrangThaiDH = EnumExtensions.GetDescription(Enumstatus.NotConfirm);
             string tenform = collection["TenForm"];
 
@@ -184,7 +184,7 @@ namespace WebApplication13.Areas.Client.Controllers
             Session["Client_GioHang"] = null;
             if (collection["rad"] == "RadSDT")
             {
-                string ToNumber = "+84" + collection["Sdt"].Substring(2);
+                string ToNumber = "+84" + collection["Sdt"].Trim(',','0');
                 ServiceSMS sms = new ServiceSMS();
                 sms.SendSMS(ToNumber, DH.TokenKey);
                 return RedirectToAction("VerifySMS");
@@ -198,12 +198,12 @@ namespace WebApplication13.Areas.Client.Controllers
             return View();
             void SendMail()
             {
-                var tenKH = collection["TenKH"].Substring(1);
-                var Sdt = collection["Sdt"].Substring(1);
-                var Diachi = collection["Diachi"].Substring(1);
-                var Email = collection["Email"].Substring(1);
+                var tenKH = collection["TenKH"].Trim(',');
+                var Sdt = collection["Sdt"].Trim(',');
+                var Diachi = collection["Diachi"].Trim(',');
+                var Email = collection["Email"].Trim(',');
                 DateTime NgayGiaoDuKien = DH.NgayMua.AddDays(3);
-                var callbackUrl = "http://Localhost:54655" + Url.Action("ConfirmDH", "Client_GioHang", new { @TokenKey = DH.TokenKey });
+                var callbackUrl = "https://truongproduction2706.azurewebsites.net/" + Url.Action("ConfirmDH", "Client_GioHang", new { @TokenKey = DH.TokenKey });
                 EmailSender email = new EmailSender();
                 email.ConfirmDatHangAsync(tenKH, Email, tenKH, DH.SoLuongBan.ToString(), string.Format("{0:0,0}", DH.TongTien), DH.NgayMua.ToShortDateString(), Email, Diachi, NgayGiaoDuKien.ToShortDateString(), callbackUrl);
             }

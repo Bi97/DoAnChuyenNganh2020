@@ -72,27 +72,34 @@
                                     </div>
 
                                 </div>
+                                <div hidden="hidden">
+                                    @Html.EditorFor(model => model.NgayTao, new { htmlAttributes = new { @class = "form-control" } })
+                                  
+                                </div>
+
+
+
 
                                 @*<div class="row mt-3">
-                                        <label class="col-sm-2 col-form-label">Nhà Cung Cấp :</label>
-                                        <div class="col-sm-7">
-                                            <div class="form-group bmd-form-group">
-                                                @Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.NhaCungCapId, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
+            <label class="col-sm-2 col-form-label">Nhà Cung Cấp :</label>
+            <div class="col-sm-7">
+                <div class="form-group bmd-form-group">
+                    @Html.DropDownList("NhaCungCapId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NhaCungCapId, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                                    </div>
+        </div>
 
-                                    <div class="row mt-3">
-                                        <label class="col-sm-2 col-form-label">Loại Sản Phẩm :</label>
-                                        <div class="col-sm-7">
-                                            <div class="form-group bmd-form-group">
-                                                @Html.DropDownList("LoaiSPId", null, htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.LoaiSPId, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>*@
+        <div class="row mt-3">
+            <label class="col-sm-2 col-form-label">Loại Sản Phẩm :</label>
+            <div class="col-sm-7">
+                <div class="form-group bmd-form-group">
+                    @Html.DropDownList("LoaiSPId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LoaiSPId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
                                 @*@Html.Action("EditDDL", new {@id = Model.LoaiSPId })*@
 
                                 <div class="form-group mt-4">

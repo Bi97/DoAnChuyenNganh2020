@@ -270,21 +270,9 @@
     <Compile Include="Helper\Enumstatus.cs" />
     <Compile Include="Helper\KeyVault.cs" />
     <Compile Include="Helper\ServiceSMS.cs" />
-    <Compile Include="Migrations\202004250832251_addcolumn.cs" />
-    <Compile Include="Migrations\202004250832251_addcolumn.Designer.cs">
-      <DependentUpon>202004250832251_addcolumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004251258241_addcolumn2.cs" />
-    <Compile Include="Migrations\202004251258241_addcolumn2.Designer.cs">
-      <DependentUpon>202004251258241_addcolumn2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004251523372_addcolumn3.cs" />
-    <Compile Include="Migrations\202004251523372_addcolumn3.Designer.cs">
-      <DependentUpon>202004251523372_addcolumn3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004260536024_zxcz.cs" />
-    <Compile Include="Migrations\202004260536024_zxcz.Designer.cs">
-      <DependentUpon>202004260536024_zxcz.cs</DependentUpon>
+    <Compile Include="Migrations\202006271641055_saa.cs" />
+    <Compile Include="Migrations\202006271641055_saa.Designer.cs">
+      <DependentUpon>202006271641055_saa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1204,7 +1192,10 @@
     <Content Include="Content\client\Img\DienThoai1.png" />
     <Content Include="Content\client\Img\homepage.jpg" />
     <Content Include="Content\client\Img\laptop1.png" />
+    <Content Include="Content\client\Img\Samsung.jpg" />
     <Content Include="Content\client\Img\Tablet1.png" />
+    <Content Include="Content\client\Img\vivo.jpg" />
+    <Content Include="Content\client\Img\xiaomi.jpg" />
     <Content Include="Content\client\inferredEvents.js" />
     <Content Include="Content\client\jasny-bootstrap.js" />
     <Content Include="Content\client\jquery.js" />
@@ -1399,6 +1390,7 @@
     <Content Include="img\sprite.png" />
     <Content Include="img\table.png" />
     <Content Include="img\vue.png" />
+    <Content Include="ProductPics\Iphone11.jpg" />
     <Content Include="Views\img\angular.png" />
     <Content Include="Views\img\apple-icon.png" />
     <Content Include="Views\img\avt_empty.jpeg" />
@@ -1752,6 +1744,7 @@
     <None Include="Properties\PublishProfiles\TruongProduction - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Truongproduction1705 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\truongproduction2 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\TruongProduction2706 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\WebApplication1320200410152619 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\WebApplication1320200410163804 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -1907,17 +1900,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004250832251_addcolumn.resx">
-      <DependentUpon>202004250832251_addcolumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004251258241_addcolumn2.resx">
-      <DependentUpon>202004251258241_addcolumn2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004251523372_addcolumn3.resx">
-      <DependentUpon>202004251523372_addcolumn3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004260536024_zxcz.resx">
-      <DependentUpon>202004260536024_zxcz.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006271641055_saa.resx">
+      <DependentUpon>202006271641055_saa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
